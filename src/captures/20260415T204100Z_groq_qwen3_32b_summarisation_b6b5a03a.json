@@ -1,0 +1,18 @@
+{
+  "session_id": "b6b5a03a",
+  "llm_name": "groq_qwen3_32b",
+  "model": "qwen/qwen3-32b",
+  "workload": "summarisation",
+  "prompt_text": "Summarise the following in one sentence: The mitochondrion is a double-membrane-bound organelle found in most eukaryotic organisms. Mitochondria generate most of the cell's supply of ATP, used as a source of chemical energy.",
+  "expected_tokens": "short",
+  "tags": [
+    "summarise",
+    "science"
+  ],
+  "timestamp_utc": "20260415T204100Z",
+  "pcap_path": "E:\\AS9Wa\\MSc Thesis\\AgenticVision\\src\\captures\\20260415T204100Z_groq_qwen3_32b_summarisation_b6b5a03a.pcap",
+  "response_text": "<think>\nOkay, I need to summarize the given information into one sentence. The original text says that mitochondria are double-membrane-bound organelles in most eukaryotic organisms and that they generate most of the cell's ATP, which is the chemical energy source.\n\nFirst, I should combine these two points. The key elements to include are the structure (double-membrane-bound organelle), presence in eukaryotic organisms, and their function in producing ATP. Let me check if \"most eukaryotic organisms\" can be rephrased for conciseness. Maybe \"found in nearly all eukaryotic cells\" instead of \"organisms\" to focus on cells. Also, \"generate most of the cell's supply of ATP\" can be simplified to \"produce ATP, the cell's primary energy currency.\" \n\nPutting it together: The mitochondrion is a double-membrane-bound organelle present in nearly all eukaryotic cells, producing ATP as the cell's primary energy source. Does that capture all the necessary information without being too wordy? Yes, I think so. Let me double-check. It mentions the structure, presence in eukaryotic cells, and the main function. The original sentence also specifies \"most eukaryotic organisms,\" but using \"cells\" is more precise. Sounds good. I'll go with that.\n</think>\n\nThe mitochondrion is a double-membrane-bound organelle present in nearly all eukaryotic cells, producing ATP as the cell's primary energy source.",
+  "response_tokens_approx": 207,
+  "latency_seconds": 10.8403,
+  "error": null
+}

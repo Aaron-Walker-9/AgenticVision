@@ -1,0 +1,18 @@
+{
+  "session_id": "9306496a",
+  "llm_name": "groq_qwen3_32b",
+  "model": "qwen/qwen3-32b",
+  "workload": "summarisation",
+  "prompt_text": "Summarise the following in one sentence: The mitochondrion is a double-membrane-bound organelle found in most eukaryotic organisms. Mitochondria generate most of the cell's supply of ATP, used as a source of chemical energy.",
+  "expected_tokens": "short",
+  "tags": [
+    "summarise",
+    "science"
+  ],
+  "timestamp_utc": "20260415T211540Z",
+  "pcap_path": "E:\\AS9Wa\\MSc Thesis\\AgenticVision\\src\\captures\\20260415T211540Z_groq_qwen3_32b_summarisation_9306496a.pcap",
+  "response_text": "<think>\nOkay, the user wants a one-sentence summary of the provided text. Let me read the original again. The mitochondrion is a double-membrane-bound organelle found in eukaryotic organisms, and it generates most of the cell's ATP.\n\nFirst, I need to condense \"double-membrane-bound organelle\" into something shorter. Maybe \"double-membrane-bound organelle\" can stay as is since it's key information. The main point is that it's in most eukaryotic organisms. \"Found in most eukaryotic organisms\" is important to mention.\n\nNext, the function part: generating ATP. The text says \"generate most of the cell's supply of ATP, used as a source of chemical energy.\" I can combine these ideas. Instead of repeating \"used as a source,\" maybe rephrase to say \"producing ATP, the cell's primary energy currency.\" That's more concise and captures the main function.\n\nPutting it all together: The mitochondrion is a double-membrane-bound organelle in most eukaryotic organisms that generates ATP as the cell's primary energy source. Hmm, does that cover all the key points? Double membrane, found in eukaryotes, ATP production as energy source. I think that works. Let me check the original again to make sure I didn't miss anything. Yes, the summary includes all essential elements without unnecessary details. The user might be a student needing a quick study reference, so clarity and conciseness are key. Maybe the word \"primary\" adds value to emphasize ATP's role. Alright, this should be a good summary.\n</think>\n\nThe mitochondrion is a double-membrane-bound organelle found in most eukaryotic cells, primarily responsible for generating ATP through cellular respiration.",
+  "response_tokens_approx": 253,
+  "latency_seconds": 0.8563,
+  "error": null
+}

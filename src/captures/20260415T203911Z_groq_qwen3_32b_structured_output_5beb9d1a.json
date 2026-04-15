@@ -1,0 +1,18 @@
+{
+  "session_id": "5beb9d1a",
+  "llm_name": "groq_qwen3_32b",
+  "model": "qwen/qwen3-32b",
+  "workload": "structured_output",
+  "prompt_text": "Return a JSON object with keys \"name\", \"age\", \"city\" for a fictional person.",
+  "expected_tokens": "short",
+  "tags": [
+    "json",
+    "structured"
+  ],
+  "timestamp_utc": "20260415T203911Z",
+  "pcap_path": "E:\\AS9Wa\\MSc Thesis\\AgenticVision\\src\\captures\\20260415T203911Z_groq_qwen3_32b_structured_output_5beb9d1a.pcap",
+  "response_text": "<think>\n</think>\n\n```json\n{\n  \"name\": \"Elena Voss\",\n  \"age\": 29,\n  \"city\": \"Newberg\"\n}\n```",
+  "response_tokens_approx": 13,
+  "latency_seconds": 12.4041,
+  "error": null
+}

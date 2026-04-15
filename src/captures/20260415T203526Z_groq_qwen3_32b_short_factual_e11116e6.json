@@ -1,0 +1,18 @@
+{
+  "session_id": "e11116e6",
+  "llm_name": "groq_qwen3_32b",
+  "model": "qwen/qwen3-32b",
+  "workload": "short_factual",
+  "prompt_text": "Name three programming languages invented before 1970.",
+  "expected_tokens": "short",
+  "tags": [
+    "factual",
+    "tech"
+  ],
+  "timestamp_utc": "20260415T203526Z",
+  "pcap_path": "E:\\AS9Wa\\MSc Thesis\\AgenticVision\\src\\captures\\20260415T203526Z_groq_qwen3_32b_short_factual_e11116e6.pcap",
+  "response_text": "<think>\nOkay, I need to name three programming languages that were developed before 1970. Let's start by recalling some early programming languages.\n\nFirst, one of the earliest high-level programming languages was Fortran. I think it was developed in the 1950s. IBM developed Fortran (Formula Translation) around 1957, right? So that's definitely before 1970.\n\nNext, there's COBOL. I remember it was designed to be used for business applications and was developed in the late 1950s as well. I believe it came out in 1959. COBOL is known for its English-like syntax and was widely used in business data processing.\n\nAnother one is Lisp. I think Lisp (List Processing) was created around 1958 by John McCarthy. It was one of the first high-level languages and became important in artificial intelligence research. So that's another one from the 1950s.\n\nWait, maybe there's also ALGOL? ALGOL (ALGOrithmic Language) was developed in the mid-1950s and early 1960s. It influenced many later languages. The first version was ALGOL 58, and the more influential ALGOL 60 followed. Definitely by 1970, ALGOL had been around.\n\nSo possible candidates are Fortran, COBOL, Lisp, and ALGOL. The question asks for three. Let me check their release years again. Fortran 1957, COBOL 1959, Lisp 1958, ALGOL 58 in 1958 and ALGOL 60 in 1960. All of these are before 1970. So any three of these would work. The user might expect the most commonly cited ones. Fortran, COBOL, and Lisp are often mentioned as the big three from that era. Alternatively, maybe Fortran, LISP, and ALGOL. But COBOL is also a significant one.\n\nI should confirm the exact years. For example, Fortran was released in 1957. Lisp was first implemented in 1958. COBOL was first defined in 1959. ALGOL 60 was published in 1960. So all these are before 1970. Therefore, three examples could be Fortran, COBOL, and Lisp. Alternatively, Fortran, COBOL, and ALGOL. I think Fortran, COBOL, and Lisp are the most commonly referenced ones. Let me make sure none of these are a mistake. I don't think any of them were developed after 1970. Yeah, all are definitely before. So the three would be Fortran, COBOL, and Lisp. Alternatively, maybe FORTRAN, LISP, and COBOL. But the user might not care about the name formatting. So the answer should include these three.\n</think>\n\nThree programming languages invented before 1970 are:\n\n1. **Fortran** (1957)  \n   - Developed by IBM, Fortran was one of the first high-level programming languages, designed for scientific and engineering computations.\n\n2. **COBOL** (1959)  \n   - Created for business applications, COBOL emphasized readability and simplicity, with syntax resembling English to facilitate adoption in the business sector.\n\n3. **Lisp** (1958)  \n   - Pioneered by John McCarthy, Lisp was primarily used in artificial intelligence research and remains influential for its support of symbolic computation and list manipulation.\n\nAll three significantly shaped the landscape of computing and influenced subsequent programming languages.",
+  "response_tokens_approx": 477,
+  "latency_seconds": 2.7387,
+  "error": null
+}
