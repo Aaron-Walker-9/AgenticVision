@@ -2,8 +2,7 @@
 prompt_bank.py
 --------------
 A categorised bank of prompts for LLM traffic fingerprinting.
-Each prompt is tagged with a workload type so the classifier can
-learn per-category signatures as well as per-model ones.
+Each prompt is tagged with a workload type so the classifier can learn per-category signatures as well as per-model ones.
 """
 
 from dataclasses import dataclass, field
@@ -114,7 +113,7 @@ PROMPT_BANK: List[Prompt] = [
            "instruction_following", "short", ["instruction", "environment"]),
     Prompt("Answer using exactly 50 words. What is blockchain?",
            "instruction_following", "short", ["instruction", "tech"]),
-]
+    ]
 
 
 def get_prompts_by_workload(workload: str) -> List[Prompt]:
