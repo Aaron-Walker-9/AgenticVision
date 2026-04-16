@@ -22,6 +22,7 @@ PROMPT_BANK: List[Prompt] = [
 
     # ── 1. SHORT FACTUAL ──────────────────────────────────────────────────
     Prompt("What is the capital of France?", "short_factual", "short", ["factual", "geography"]),
+    Prompt("What is the capital of England?", "short_factual", "short", ["factual", "geography"]),
     Prompt("What year did the Berlin Wall fall?", "short_factual", "short", ["factual", "history"]),
     Prompt("What is the boiling point of water in Celsius?", "short_factual", "short", ["factual", "science"]),
     Prompt("Who wrote 1984?", "short_factual", "short", ["factual", "literature"]),
