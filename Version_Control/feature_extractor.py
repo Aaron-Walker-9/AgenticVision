@@ -1,4 +1,8 @@
 """
+Version 1.0: discontinued on 22nd April 2026.
+Extracts single row features/ statistical description per prompt session.
+
+--------------------
 feature_extractor.py
 ---------------------
 Parses every .pcap + .json pair in the captures/ directory and
@@ -29,6 +33,7 @@ from typing import Dict, List, Optional
 import numpy as np
 import pandas as pd
 from scipy import stats
+
 
 warnings.filterwarnings("ignore")
 
