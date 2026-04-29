@@ -1,4 +1,7 @@
-/Datastore
+/Datastore/features*
+/Datastore/labels*
+/Datastore/processed_datasets*
+/Datastore/raw_captures*
 .env
 /src/captures
 src/captures
