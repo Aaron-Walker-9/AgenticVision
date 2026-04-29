@@ -85,9 +85,9 @@ class WindowConfig:
     ac_lags: Tuple[int, ...] = (1, 2, 3)
 
     # --- I/O -----------------------------------------------------------------
-    captures_dir: Path = Path("src/captures")
-    output_csv: Path = Path("dataset_windowed.csv")
-    output_parquet: Path = Path("dataset_windowed.parquet")
+    captures_dir: Path = Path("Datastore/raw_captures")
+    output_csv: Path = Path("Datastore/processed_datasets/dataset_windowed.csv")
+    output_parquet: Path = Path("Datastore/processed_datasets/dataset_windowed.parquet")
 
 
 CFG = WindowConfig()
