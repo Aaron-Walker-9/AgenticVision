@@ -18,3 +18,4 @@
 /src/captures
 src/captures
 src/__pycache__
+/EDA notebooks/traffic_plots/*
