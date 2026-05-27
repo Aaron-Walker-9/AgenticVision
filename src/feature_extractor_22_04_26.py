@@ -58,7 +58,7 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 try:
-    from scapy.all import IP, TCP, Raw, rdpcap
+    from scapy.all import IP, IPv6, TCP, UDP, Raw, rdpcap
     SCAPY_AVAILABLE = True
 except ImportError:
     SCAPY_AVAILABLE = False
@@ -91,7 +91,6 @@ class WindowConfig:
 
 
 CFG = WindowConfig()
-
 
 # =============================================================================
 # LOW-LEVEL STATISTICAL HELPERS
@@ -457,22 +456,40 @@ def load_pcap_flow(pcap_path: Path) -> Optional[FlowData]:
         print(f"  [ERR] Cannot read {pcap_path.name}: {e}")
         return None
 
-    first = next((p for p in packets if IP in p and TCP in p), None)
+    def ip_layer(pkt):
+        if IP in pkt:   return pkt[IP]
+        if IPv6 in pkt: return pkt[IPv6]
+        return None
+
+    first = next((p for p in packets if ip_layer(p) and TCP in p), None)
+    if first is None:
+        first = next((p for p in packets if ip_layer(p) and UDP in p), None)
     if first is None:
         return None
 
-    src_ip   = first[IP].src
-    src_port = first[TCP].sport
+    ip0      = ip_layer(first)
+    src_ip   = ip0.src
+    src_port = first[TCP].sport if TCP in first else first[UDP].sport
+
     times, lengths, fwd_flags = [], [], []
     tls = False
 
     for pkt in packets:
-        if IP not in pkt or TCP not in pkt:
+        ipl = ip_layer(pkt)
+        if ipl is None:
             continue
+        if TCP not in pkt and UDP not in pkt:
+            continue
+
         times.append(float(pkt.time))
         lengths.append(len(pkt))
-        fwd_flags.append(pkt[IP].src == src_ip and pkt[TCP].sport == src_port)
-        if pkt[TCP].dport == 443 or pkt[TCP].sport == 443:
+
+        pkt_src_port = pkt[TCP].sport if TCP in pkt else pkt[UDP].sport
+        pkt_dst_port = pkt[TCP].dport if TCP in pkt else pkt[UDP].dport
+
+        fwd_flags.append(ipl.src == src_ip and pkt_src_port == src_port)
+
+        if pkt_dst_port == 443 or pkt_src_port == 443:
             tls = True
         if Raw in pkt:
             raw = bytes(pkt[Raw])
@@ -483,9 +500,10 @@ def load_pcap_flow(pcap_path: Path) -> Optional[FlowData]:
         return None
 
     order = np.argsort(times)
-    t = np.array(times,     dtype=np.float64)[order]
-    l = np.array(lengths,   dtype=np.int32)[order]
+    t = np.array(times,   dtype=np.float64)[order]
+    l = np.array(lengths, dtype=np.int32)[order]
     f = np.array(fwd_flags, dtype=bool)[order]
+
     return FlowData(times=t, lengths=l, fwd_mask=f,
                     tls_detected=tls, duration=float(t[-1] - t[0]))
 
@@ -534,7 +552,9 @@ def sliding_windows_for_flow(
 
         # [L] Packet delta features
         pkt_delta = compute_delta_features(pkt_feats, prev_pkt_feats)
-        prev_pkt_feats = pkt_feats.copy()
+        # only update previous if this window had real data
+        if len(t_win) >= cfg.min_pkts_per_window:
+            prev_pkt_feats = pkt_feats.copy()
 
         # [I-J] Token ITT features aligned to the same time window
         if token_times is not None and len(token_times) > 0:
@@ -615,10 +635,13 @@ def build_windowed_dataset(cfg: WindowConfig = CFG) -> pd.DataFrame:
             print(f"  [SKIP] Errored session: {meta['session_id']}")
             continue
 
-        pcap_path = (meta_path.parent / meta["pcap_path"]).resolve()
+        pcap_stem = Path(meta["pcap_path"]).stem   # original filename without extension
+        pcap_path = (meta_path.parent / (pcap_stem + "_filtered.pcap")).resolve()
+
+        # fallback to original pcap if filtered version doesn't exist
         if not pcap_path.exists():
-            print(f"  [SKIP] PCAP not found: {pcap_path}")
-            continue
+            print(f"  [WARN] No filtered PCAP found, falling back to original: {pcap_stem}.pcap")
+            pcap_path = (meta_path.parent / meta["pcap_path"]).resolve()
 
         flow = load_pcap_flow(pcap_path)
         if flow is None:
@@ -627,7 +650,10 @@ def build_windowed_dataset(cfg: WindowConfig = CFG) -> pd.DataFrame:
 
         # Load token timestamps (optional)
         token_times: Optional[np.ndarray] = None
-        token_path = pcap_path.with_suffix(".tokens.json")
+        
+        # token files always use the original name (no _filtered suffix)
+        pcap_stem_original = pcap_path.stem.replace("_filtered", "")
+        token_path = pcap_path.parent / (pcap_stem_original + ".tokens.json")
 
         if token_path.exists():
             try:
